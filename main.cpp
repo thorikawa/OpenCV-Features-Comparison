@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <numeric>
 #include <fstream>
+#include "akaze_features.h"
+#include "kaze_features.h"
 
 
 const bool USE_VERBOSE_TRANSFORMATIONS = false;
@@ -22,20 +24,23 @@ int main(int argc, const char* argv[])
        
     algorithms.push_back(FeatureAlgorithm("KAZE",
         new cv::KAZE(),
-        new cv::FlannBasedMatcher()));
+        new cv::BFMatcher(cv::NORM_L2, useCrossCheck)));
+    algorithms.push_back(FeatureAlgorithm("AKAZE",
+        new cv::AKAZE(),
+        new cv::BFMatcher(cv::NORM_L2, useCrossCheck)));
 
-    algorithms.push_back(FeatureAlgorithm("BRISK",
-        new cv::BRISK(60,4),
-        new cv::BFMatcher(cv::NORM_HAMMING, useCrossCheck)));
+    algorithms.push_back(FeatureAlgorithm("SIFT",
+        new cv::SIFT(),
+        new cv::BFMatcher(cv::NORM_L2, useCrossCheck)));
+
+    algorithms.push_back(FeatureAlgorithm("SURF",
+        new cv::SURF(),
+        new cv::BFMatcher(cv::NORM_L2, useCrossCheck)));
 
     algorithms.push_back(FeatureAlgorithm("ORB",
         new cv::ORB(),
-        new cv::BFMatcher(cv::NORM_HAMMING, useCrossCheck)));
+        new cv::BFMatcher(cv::NORM_L2, useCrossCheck)));
     
-    algorithms.push_back(FeatureAlgorithm("FREAK",
-        new cv::SurfFeatureDetector(),
-        new cv::FREAK(),
-        new cv::BFMatcher(cv::NORM_HAMMING, useCrossCheck)));
 
     /*
     algorithms.push_back(FeatureAlgorithm("SURF+BRISK",
@@ -71,12 +76,7 @@ int main(int argc, const char* argv[])
         new cv::FastFeatureDetector(50),
         new cv::BriefDescriptorExtractor(),
         new cv::BFMatcher(cv::NORM_HAMMING, useCrossCheck)));
-
-
-
-    
-
-    /**/
+    */
 
     // Initialize list of used transformations:
     if (USE_VERBOSE_TRANSFORMATIONS)

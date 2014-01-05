@@ -14,7 +14,9 @@ include_directories(${OpenCV_INCLUDE_DIR})
 link_directories(${OpenCV_LIBRARY_DIR})
 
 add_executable(test_opencv_features2d main.cpp ImageTransformation.hpp ImageTransformation.cpp FeatureAlgorithm.hpp FeatureAlgorithm.cpp AlgorithmEstimation.hpp AlgorithmEstimation.cpp CollectedStatistics.hpp
-CollectedStatistics.cpp)
+CollectedStatistics.cpp akaze_features.cpp akaze_fed.cpp akaze_nldiffusion_functions.cpp akaze_utils.cpp AKAZE.cpp 
+kaze.cpp kaze_nldiffusion_functions.cpp kaze_config.cpp kaze_features.cpp kaze_ipoint.cpp kaze_utils.cpp 
+)
 
 target_link_libraries( test_opencv_features2d ${OpenCV_LIBRARIES} )
       

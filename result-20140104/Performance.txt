@@ -1,0 +1,8 @@
+"Performance"
+"Algorithm"	"Average time per Frame"	"Average time per KeyPoint"
+"AKAZE"	117.458	0.797077
+"KAZE"	741.112	3.75878
+"ORB"	5.77404	0.0151431
+"SIFT"	41.0728	0.147772
+"SURF"	18.4614	0.0391613
+
